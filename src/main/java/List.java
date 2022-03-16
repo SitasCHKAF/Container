@@ -31,19 +31,6 @@ public class List {
             tail = a;               //а в указатель на последний элемент записываем адрес нового элемента
         }
     }
-
-    void printList()                //печать списка
-    {
-        ListElement t = this.head;       //получаем ссылку на первый элемент
-        while (t != null)           //пока элемент существуе
-        {
-            System.out.print(t.data + " "); //печатаем его данные
-            t = t.next;                     //и переключаемся на следующий
-        }
-        System.out.println();
-    }
-
-
     public void addAfter(int prevEl, int nextEl){//Мстод который задали вам
         ListElement t = this.head; //Получаем ссылку на первоэлемент
         while (t!=null){
@@ -57,6 +44,16 @@ public class List {
             t = t.next;
         }
 
+    }
+    void printList()                //печать списка
+    {
+        ListElement t = this.head;       //получаем ссылку на первый элемент
+        while (t != null)           //пока элемент существуе
+        {
+            System.out.print(t.data + " "); //печатаем его данные
+            t = t.next;                     //и переключаемся на следующий
+        }
+        System.out.println();
     }
 
     void delEl(int data)          //удаление элемента
@@ -90,15 +87,17 @@ public class List {
     }
     boolean findEl(int data)
     {
-        ListElement t = head;
-        if(head.data == data)
+        ListElement t = head; //ссылка на первый элемент
+        if(t == null)     //если список пуст
+            return false;
+        if(head.data == data)   //если первый элемент - тот, что нам нужен
             return true;
-        while(t.next != null)
+        while(t.next != null) //пока следующий элемент существует
         {
             if (t.next.data == data) {  //проверяем следующий элемент
                 return true;
             }
-            t = t.next;
+            t = t.next;   //переключаем указатель
         }
         return false;
     }
